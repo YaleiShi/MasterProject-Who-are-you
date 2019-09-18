@@ -1,0 +1,54 @@
+   <html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv" style="width:1200px; height:600px;"></div>
+  <script>
+  /* JAVASCRIPT CODE GOES HERE */
+   // initial data..
+   function getUrlVars() {
+       var vars = {};
+       var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+           vars[key] = value;
+       });
+       return vars;
+   }
+   var a = getUrlVars()
+
+
+   // Store XMLHttpRequest and the JSON file location in variables
+var xhr = new XMLHttpRequest();
+var url = "/spc?path="+a["path"]+"&start="+a["start"]+"&end="+a["end"];
+
+// Called whenever the readyState attribute changes
+xhr.onreadystatechange = function() {
+
+  // Check if fetch request is done
+  if (xhr.readyState == 4 && xhr.status == 200) {
+
+    // Parse the JSON string
+    var jsonData = JSON.parse(xhr.responseText);
+
+    // Call the showArtists(), passing in the parsed JSON string
+    var data_z1 = {z: jsonData, type: 'surface'};
+
+
+    // Plotting the surfaces..
+    Plotly.newPlot('myDiv', [data_z1],  {showSendToCloud: false});
+
+  }
+};
+
+// Do the HTTP call using the url variable we specified above
+xhr.open("GET", url, true);
+xhr.send();
+
+
+
+  </script>
+</body>
+</html>
