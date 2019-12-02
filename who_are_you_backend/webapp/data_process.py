@@ -14,6 +14,7 @@ learning_rate = 0.0001
 num_epochs = 20000
 
 # convert wav to mp3
+# gou pi! convert m4a to wav
 def convert_m4a(src):
     filename = os.path.splitext(os.path.basename(src))[0]
 
