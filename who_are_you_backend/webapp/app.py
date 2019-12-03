@@ -3,7 +3,7 @@ import json
 from flask import Flask, request, redirect, url_for, jsonify
 from BiRNN import BiRNN
 from data_process import *
-from model_load import *
+#from model_load import *
 import random
 
 UPLOAD_FOLDER = 'uploads/'
@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.debug = True
 
-rnn = create_model()
+#rnn = create_model()
 cnt = 0
 
 @app.route('/')
@@ -46,12 +46,12 @@ def index():
         # result = get_predict(predicted)
         result = 1
         print(result)
-        if result == 1:
-            data["gender"] = "male"
-            data["prob"] = 50 + random.randint(1, 49)
-        else:
-            data["gender"] = "female"
-            data["prob"] = 50 + random.randint(1, 49)
+        # if result == 1:
+        #     data["gender"] = "male"
+        #     data["prob"] = 50 + random.randint(1, 49)
+        # else:
+        data["gender"] = "nativeness"
+        data["prob"] = 50 + random.randint(1, 49)
     return jsonify(data)
 
 
