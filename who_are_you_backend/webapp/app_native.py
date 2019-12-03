@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 UPLOAD_FOLDER = 'uploads/'
-MODEL_PATH = './model/cnn_model.h5'
+MODEL_PATH = "./model/cnn_model.h5"
 
 ALLOWED_EXTENSIONS = set(['m4a'])
 
@@ -44,16 +44,18 @@ cnt = 0
 #         print(dst)
 #
 #         # use dst to load target wav file and convert it into a mfcc file
-#         raw_mfcc = generate_mfcc(dst)
-#         print(raw_mfcc)
+dst = "wavs/fe_03_00001.wav"
+raw_mfcc = generate_mfcc(dst)
+print(raw_mfcc)
+
+        # force align
+force_align_mfcc = force_align(raw_mfcc)
+
+        # read final mfcc array
+X = get_numpy_mfcc(force_align_mfcc)
 #
-#         # force align
-#         force_align_mfcc = force_align(raw_mfcc)
-#
-#         # read final mfcc array
-#         X = get_numpy_mfcc(force_align_mfcc)
-#
-#         out = cnn.predict(X, verbose=1)
+out = cnn.predict(X, verbose=1)
+print(out)
 #         result = out[0][0]
 #
 #         # result = 1

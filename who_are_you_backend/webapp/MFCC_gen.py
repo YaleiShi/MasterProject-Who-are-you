@@ -1,14 +1,15 @@
 import numpy as np
 import os
 import librosa
-from python_speech_features import mfcc
-from python_speech_features import logfbank
+# from python_speech_features import mfcc
+# from python_speech_features import logfbank
 import scipy.io.wavfile as wav
 
 directory = "./mfcc/"
 max_len = 1241
 
 def generate_mfcc(path):
+    print(path)
     y, sr = librosa.load(path)
 
     # Compute MFCC features from the raw signal
@@ -31,7 +32,7 @@ def force_align(path):
         row_len = len(row)
         if row_len > max_len:
             row_len = max_len
-            
+
         for j in range(0, row_len):
             # print(len(row))
             new_mfcc[i][j] = row[j]
@@ -47,10 +48,10 @@ def force_align(path):
 
 def get_numpy_mfcc(path):
     x = []
-    mfcc = np.load(path)
+    mfcc = np.load(path,  allow_pickle=true)
     x.append(stupid_keras_d3_to_d4(mfcc))
 
-    return x 
+    return x
 
 def stupid_keras_d3_to_d4(data):
     data4 = np.zeros((20, 1241, 1))
