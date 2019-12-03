@@ -14,14 +14,27 @@ def generate_mfcc(path):
 
     # Compute MFCC features from the raw signal
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=20)
+    _, length = np.shape(mfcc)
+    if length > max_len:
+        length = max_len
+    print("length", length)
+    data4 = np.zeros((20, 1241, 1))
+    for i in range(0, 20):
+         for j in range(0, length):
+            data4[i][j][0] = mfcc[i][j]
+    x = []
+    x.append(data4)
+    x.append(data4)
+    print(np.shape(x))
+    return x
 
-    outputFile = directory + "test_mfcc.npy"
-
-    file = open(outputFile, 'w+') # make file/over write existing file
-    np.save(outputFile, mfcc)
-    file.close() # close file
-
-    return outputFile
+    # outputFile = directory + "test_mfcc.npy"
+    #
+    # file = open(outputFile, 'w+') # make file/over write existing file
+    # np.save(outputFile, mfcc)
+    # file.close() # close file
+    #
+    # return outputFile
 
 def force_align(path):
     mfcc = np.load(path)
@@ -37,12 +50,13 @@ def force_align(path):
             # print(len(row))
             new_mfcc[i][j] = row[j]
 
+
         # print("row len: %d", len(row))
-    outputFile = directory + "force_align.py"
-    # print("mfcc len: ", len(new_mfcc[0]))
-    file = open(outputFile, 'w+') # make file/over write existing file
-    np.save(outputFile, new_mfcc)
-    file.close() # close file
+    # outputFile = directory + "force_align.py"
+    # # print("mfcc len: ", len(new_mfcc[0]))
+    # file = open(outputFile, 'w+') # make file/over write existing file
+    # np.save(outputFile, new_mfcc)
+    # file.close() # close file
 
     return outputFile
 
