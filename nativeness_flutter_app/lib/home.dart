@@ -46,7 +46,7 @@ class Home extends StatelessWidget{
         Container(
           margin: EdgeInsets.only(top: 48.0),
           child: Text(
-            'I\'ll guess your gender  \nby voice.',
+            'I\'ll guess your nativeness \nby voice.',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 32.0,
@@ -93,9 +93,9 @@ Widget ButtonWidget(context) {
                   MaterialPageRoute(
                     builder: (BuildContext context) => PageTwo()
                     ),
-            );                  
+            );
           },
-          child:         
+          child:
           InkWell(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 56.0, vertical: 16.0),
