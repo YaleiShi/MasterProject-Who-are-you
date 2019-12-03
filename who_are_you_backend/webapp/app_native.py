@@ -44,15 +44,15 @@ cnt = 0
 #         print(dst)
 #
 #         # use dst to load target wav file and convert it into a mfcc file
-dst = "wavs/fe_03_00001.wav"
-raw_mfcc = generate_mfcc(dst)
-print(raw_mfcc)
+dst = "wavs/tool.wav"
+X = generate_mfcc(dst)
+print(np.shape(X))
 
         # force align
-force_align_mfcc = force_align(raw_mfcc)
+# force_align_mfcc = force_align(raw_mfcc)
 
         # read final mfcc array
-X = get_numpy_mfcc(force_align_mfcc)
+# X = get_numpy_mfcc(force_align_mfcc)
 #
 out = cnn.predict(X, verbose=1)
 print(out)
