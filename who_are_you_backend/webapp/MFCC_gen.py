@@ -25,8 +25,11 @@ def generate_mfcc(path):
     x = []
     x.append(data4)
     x.append(data4)
-    print(np.shape(x))
-    return x
+    # print(np.shape(x))
+
+    y = []
+    y.append(x)
+    return y
 
     # outputFile = directory + "test_mfcc.npy"
     #
