@@ -48,7 +48,7 @@ def force_align(path):
 
 def get_numpy_mfcc(path):
     x = []
-    mfcc = np.load(path,  allow_pickle=true)
+    mfcc = np.load(path)
     x.append(stupid_keras_d3_to_d4(mfcc))
 
     return x
